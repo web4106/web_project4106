@@ -34,6 +34,44 @@ class Register(forms.Form):
             raise forms.ValidationError('两次密码不一致')
         return repasswd
 
+#发布商品
+class GoodsForm(ModelForm):
+    #Gategory = ModelChoiceField(queryset=GoodsType.objects.all())  # 不分级单选可
+    class Meta:
+        model = GoodsMessage
+        Gategory = ModelChoiceField(queryset=GoodsType.objects.all())  # 分级单选框
+        fields = ['Title','Category','Details']
+        labels = {
+            'Title': '商品名',
+            'Category': '分类',
+        }
+        widgets = {
+            'Title': forms.TextInput(attrs={'class' : 'form-control',
+                                            'id' : "inputCount3" ,
+                                            'placeholder' : "不要超过20个字",
+            }),
+
+            'Gategory' : forms.Select(attrs={'class' : "form-control",
+
+            }),
+
+            'Details' : forms.Textarea(attrs={'class' : "form-control",
+                                              'rows' : 3 ,
+                                              'id' : "introduction",
+
+            })
+        }
+
+class SearchForm(forms.Form):
+    name = forms.CharField(max_length=10,label='标题',required=False)
+    type = ModelChoiceField(queryset=GoodsType.objects.all(),required=False,label='类型')
+
+class GoodsWordsForm(forms.Form):
+    Words = forms.CharField(label='',widget=forms.Textarea(attrs={'rows':3,'cols':50}))
+    To = forms.IntegerField(widget=forms.HiddenInput,required=False)
+
+
+
 class UserMessage(ModelForm):
     class Meta:
         model=UserProfile
