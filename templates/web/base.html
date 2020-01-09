@@ -43,8 +43,10 @@
     				<li class="user-info">
 
     					{% if request.session.nick %}
+    					<a href="/me/">
 
     						<span class="f12">{{ request.session.nick }}</span><img src="{{ request.session.avatar }}" class="img-rounded"/>
+                        </a>
                             <a href="/logout/">退出</a>
 
 
