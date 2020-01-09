@@ -1,0 +1,20 @@
+{% extends "web/base.html" %}
+{% block title %}首页{% endblock %}
+{% block detial %}
+<link rel="stylesheet" href="/static/web/css/index.css">
+<link rel="stylesheet" href="/static/web/css/slide.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="logo">二手交易</h1>
+        </div>
+    </div>
+</div>
+
+<script src="/static/web/js/index.js"></script>
+<script>
+    $(function () {
+        $('#slide3d').slideCarsousel({ slideType: '3d', indicatorEvent: 'mouseover' });
+    });
+</script>
+{% endblock %}
